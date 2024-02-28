@@ -1,6 +1,7 @@
 package com.eng.company.controller;
 
 import com.eng.company.entity.Employees;
+import com.eng.company.models.EmployeeDivisionResponseTemplate;
 import com.eng.company.service.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,13 @@ public class EmployeeController {
         return employeeService.findAllEmployees();
     }
 
-    @GetMapping("/{employeeId}")
+    @GetMapping("/findById/{employeeId}")
     public Optional<Employees> findOne(@PathVariable("employeeId") Long employeeId){
         return employeeService.findOneEmployee(employeeId);
+    }
+
+    @GetMapping("/{employeeId}")
+    public EmployeeDivisionResponseTemplate getEmployeeWithDivision(@PathVariable("employeeId") Long employeeId){
+        return employeeService.getEmployeeWithDivision(employeeId);
     }
 }
